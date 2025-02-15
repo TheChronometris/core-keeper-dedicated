@@ -17,8 +17,12 @@ RUN set -x \
     && apt-get install -y --no-install-recommends --no-install-suggests \
         wget \
         xvfb \
+	sudo \
+ 	libxi6 \
     && mkdir "${STEAMAPPDIR}" \
     && mkdir -p "${APPSAVEDIR}" \
+    && mkdir -p /tmp/.X11-unix \
+    && chmod 1777 /tmp/.X11-unix \
     && wget --max-redirect=30 "${DLURL}/main/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
     && chmod +x "${HOMEDIR}/entry.sh" \
     && chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${HOMEDIR}/.config" \
